@@ -5,7 +5,7 @@ SimpleWebServer, modified. Original version is at http://www.jibble.org/miniwebs
 
 ## License
 
-The license of this software is GNU General Public License (GPL) from the [Free Software Foundation](http://www.fsf.org/).
+The license of this software is the GNU General Public License (GPL) from the [Free Software Foundation](http://www.fsf.org/).
 
 Original distribution's copyright is as follows:
 

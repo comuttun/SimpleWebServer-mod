@@ -26,7 +26,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Copyright Paul Mutton
@@ -36,7 +37,7 @@ import java.util.Hashtable;
 public class SimpleWebServer extends Thread {
 
     public static final String VERSION = "SimpleWebServer  http://www.jibble.org/";
-    public static final Hashtable MIME_TYPES = new Hashtable();
+    public static final Map<String, String> MIME_TYPES = new HashMap<String, String>();
 
     static {
         String image = "image/";

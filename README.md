@@ -21,3 +21,14 @@ Original distribution's copyright is as follows:
 
 
 
+## Usage
+
+* Added two options to the original
+    * -root <rootPath> [NOT REQUIRED]
+        * Set server's root
+    * -port <port> [NOT REQUIRED]
+        * Set server's port to liseten
+* Running
+    * java -jar SimpleWebServer-mod-0.0.1.jar -root /tmp -port 8080
+* Building
+    * mvn clean package  

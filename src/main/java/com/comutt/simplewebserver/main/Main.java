@@ -22,10 +22,27 @@ import com.comutt.simplewebserver.adaptor.SimpleWebServerAdaptorImpl;
  */
 public class Main {
 
+    /** Default server root */
+    public static final String DEFAULT_ROOT = ".";
+
+    /** Default server port to listen */
+    public static final int DEFAULT_LISTEN_PORT = 80;
+
+    private static Argument argument = new Argument();
     private static SimpleWebServerAdaptor adaptor =
             new SimpleWebServerAdaptorImpl();
 
+
 	/**
+	 * Set {@link Argument} instance. <br/>
+	 * This setter is for unit testing.
+     * @param argument The {@link Argument} instance to set
+     */
+    static void setArgument(Argument argument) {
+        Main.argument = argument;
+    }
+
+    /**
 	 * Set adaptor instance. <br/>
 	 * This setter is for unit testing.
      * @param adaptor The adaptor to set
@@ -34,13 +51,20 @@ public class Main {
         Main.adaptor = adaptor;
     }
 
+
+
     /**
 	 * Main method
 	 * @param args Command line arguments
 	 */
 	public static void main(String[] args) {
 	    try {
-            adaptor.createServer(new File("."), 80).start();
+	        argument.parse(args);
+
+	        final String root = argument.getRoot() == null ? DEFAULT_ROOT : argument.getRoot();
+	        final int port = argument.getPort() == 0 ? DEFAULT_LISTEN_PORT : argument.getPort();
+
+            adaptor.createServer(new File(root), port).start();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

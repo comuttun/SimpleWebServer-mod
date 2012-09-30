@@ -48,13 +48,14 @@ public class MainTest {
     @Before
     public void setUp() throws Exception {
         Main.setAdaptor(adaptor);
+        Main.setArgument(new Argument());
     }
 
     /**
      * Test method for {@link Main#main(String[])}.
      */
     @Test
-    public void testMain() throws Exception {
+    public void testMain_NoArguments() throws Exception {
         when(adaptor.createServer(isA(File.class), anyInt())).thenReturn(server);
         doNothing().when(server).start();
 
@@ -63,7 +64,64 @@ public class MainTest {
         verify(adaptor).createServer(file.capture(), eq(80));
         verifyNoMoreInteractions(adaptor);
 
-        assertThat(file.getValue().getName(), equalTo("."));
+        assertThat(file.getValue().getPath(), equalTo("."));
+
+        verify(server).start();
+        verifyNoMoreInteractions(server);
+    }
+
+    /**
+     * Test method for {@link Main#main(String[])}.
+     */
+    @Test
+    public void testMain_RootArg() throws Exception {
+        when(adaptor.createServer(isA(File.class), anyInt())).thenReturn(server);
+        doNothing().when(server).start();
+
+        Main.main(new String[]{"-root", "/tmp"});
+        final ArgumentCaptor<File> file = ArgumentCaptor.forClass(File.class);
+        verify(adaptor).createServer(file.capture(), eq(80));
+        verifyNoMoreInteractions(adaptor);
+
+        assertThat(file.getValue().getPath(), equalTo("/tmp"));
+
+        verify(server).start();
+        verifyNoMoreInteractions(server);
+    }
+
+    /**
+     * Test method for {@link Main#main(String[])}.
+     */
+    @Test
+    public void testMain_PortArg() throws Exception {
+        when(adaptor.createServer(isA(File.class), anyInt())).thenReturn(server);
+        doNothing().when(server).start();
+
+        Main.main(new String[]{"-port", "8080"});
+        final ArgumentCaptor<File> file = ArgumentCaptor.forClass(File.class);
+        verify(adaptor).createServer(file.capture(), eq(8080));
+        verifyNoMoreInteractions(adaptor);
+
+        assertThat(file.getValue().getPath(), equalTo("."));
+
+        verify(server).start();
+        verifyNoMoreInteractions(server);
+    }
+
+    /**
+     * Test method for {@link Main#main(String[])}.
+     */
+    @Test
+    public void testMain_PortArg_RootArg() throws Exception {
+        when(adaptor.createServer(isA(File.class), anyInt())).thenReturn(server);
+        doNothing().when(server).start();
+
+        Main.main(new String[]{"-port", "8080", "-root", "/tmp"});
+        final ArgumentCaptor<File> file = ArgumentCaptor.forClass(File.class);
+        verify(adaptor).createServer(file.capture(), eq(8080));
+        verifyNoMoreInteractions(adaptor);
+
+        assertThat(file.getValue().getPath(), equalTo("/tmp"));
 
         verify(server).start();
         verifyNoMoreInteractions(server);

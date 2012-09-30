@@ -57,7 +57,6 @@ public class SimpleWebServer extends Thread {
             throw new IOException("Not a directory.");
         }
         _serverSocket = new ServerSocket(port);
-        start();
     }
 
     @Override
@@ -84,15 +83,6 @@ public class SimpleWebServer extends Thread {
             extension = filename.substring(dotPos);
         }
         return extension.toLowerCase();
-    }
-
-    public static void main(String[] args) {
-        try {
-            SimpleWebServer server = new SimpleWebServer(new File("./"), 80);
-        }
-        catch (IOException e) {
-            System.out.println(e);
-        }
     }
 
     private final File _rootDir;

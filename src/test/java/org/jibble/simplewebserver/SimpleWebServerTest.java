@@ -44,6 +44,7 @@ public class SimpleWebServerTest {
 		Thread serverThread = null;
 		try {
 			serverThread = new SimpleWebServer(tempFile, 0);
+			serverThread.start();
 			fail("Never reach here");
 		} catch (Exception ex) {
 			if (!(ex instanceof IOException)) {
@@ -68,7 +69,6 @@ public class SimpleWebServerTest {
 		}
 	}
 
-
 	/**
 	 * Test for {@link SimpleWebServer#SimpleWebServer(File, int)}
 	 */
@@ -80,6 +80,7 @@ public class SimpleWebServerTest {
 		final int freeLocalPort = TestUtil.getFreeLocalPort();
 
 		final SimpleWebServer serverThread = new SimpleWebServer(tempDirectory, freeLocalPort);
+		serverThread.start();
 
 		boolean allPassed = false;
 		try {

@@ -1,24 +1,32 @@
-/* 
-Copyright Paul James Mutton, 2001-2004, http://www.jibble.org/
+/**
+Copyright KOMATSU Seiji (comutt), 2012, https://github.com/comutt/SimpleWebServer-mod
 
-This file is part of Mini Wegb Server / SimpleWebServer.
+This software is modification of the original from http://www.jibble.org/miniwebserver/,
+and licensed under the GNU General Public License (GPL) from the Free Software Foundation, http://www.fsf.org/.
 
-This software is dual-licensed, allowing you to choose between the GNU
-General Public License (GPL) and the www.jibble.org Commercial License.
-Since the GPL may be too restrictive for use in a proprietary application,
-a commercial license is also provided. Full license information can be
-found at http://www.jibble.org/licenses/
+Thanks to Paul James Mutton, the author of the original.
 
-$Author: pjm2 $
-$Id: ServerSideScriptEngine.java,v 1.4 2004/02/01 13:37:35 pjm2 Exp $
+The original copyright is as follows:
+
+  Copyright Paul James Mutton, 2001-2004, http://www.jibble.org/
+
+  This file is part of Mini Wegb Server / SimpleWebServer.
+
+  This software is dual-licensed, allowing you to choose between the GNU
+  General Public License (GPL) and the www.jibble.org Commercial License.
+  Since the GPL may be too restrictive for use in a proprietary application,
+  a commercial license is also provided. Full license information can be
+  found at http://www.jibble.org/licenses/
 
 */
 
 package org.jibble.simplewebserver;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Hashtable;
 
 /**
  * Copyright Paul Mutton
@@ -29,7 +37,7 @@ public class SimpleWebServer extends Thread {
 
     public static final String VERSION = "SimpleWebServer  http://www.jibble.org/";
     public static final Hashtable MIME_TYPES = new Hashtable();
-    
+
     static {
         String image = "image/";
         MIME_TYPES.put(".gif", image + "gif");
@@ -41,7 +49,7 @@ public class SimpleWebServer extends Thread {
         MIME_TYPES.put(".htm", text + "html");
         MIME_TYPES.put(".txt", text + "plain");
     }
-    
+
     public SimpleWebServer(File rootDir, int port) throws IOException {
         _rootDir = rootDir.getCanonicalFile();
         if (!_rootDir.isDirectory()) {
@@ -50,8 +58,9 @@ public class SimpleWebServer extends Thread {
         _serverSocket = new ServerSocket(port);
         start();
     }
-    
-    public void run() {
+
+    @Override
+	public void run() {
         while (_running) {
             try {
                 Socket socket = _serverSocket.accept();
@@ -63,7 +72,7 @@ public class SimpleWebServer extends Thread {
             }
         }
     }
-    
+
     // Work out the filename extension.  If there isn't one, we keep
     // it as the empty string ("").
     public static String getExtension(java.io.File file) {
@@ -75,7 +84,7 @@ public class SimpleWebServer extends Thread {
         }
         return extension.toLowerCase();
     }
-    
+
     public static void main(String[] args) {
         try {
             SimpleWebServer server = new SimpleWebServer(new File("./"), 80);
@@ -84,9 +93,9 @@ public class SimpleWebServer extends Thread {
             System.out.println(e);
         }
     }
-    
-    private File _rootDir;
-    private ServerSocket _serverSocket;
-    private boolean _running = true;
+
+    private final File _rootDir;
+    private final ServerSocket _serverSocket;
+    private final boolean _running = true;
 
 }

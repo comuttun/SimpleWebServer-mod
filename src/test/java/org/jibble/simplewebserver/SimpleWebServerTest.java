@@ -1,3 +1,13 @@
+/**
+Copyright KOMATSU Seiji (comutt), 2012, https://github.com/comutt/SimpleWebServer-mod
+
+This software is modification of the original from http://www.jibble.org/miniwebserver/,
+and licensed under the GNU General Public License (GPL) from the Free Software Foundation, http://www.fsf.org/.
+
+Thanks to Paul James Mutton, the author of the original.
+
+*/
+
 package org.jibble.simplewebserver;
 
 import static org.hamcrest.CoreMatchers.is;

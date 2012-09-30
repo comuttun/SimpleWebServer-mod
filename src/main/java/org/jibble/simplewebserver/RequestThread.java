@@ -1,16 +1,22 @@
-/*
-Copyright Paul James Mutton, 2001-2004, http://www.jibble.org/
+/**
+Copyright KOMATSU Seiji (comutt), 2012, https://github.com/comutt/SimpleWebServer-mod
 
-This file is part of Mini Wegb Server / SimpleWebServer.
+This software is modification of the original from http://www.jibble.org/miniwebserver/,
+and licensed under the GNU General Public License (GPL) from the Free Software Foundation, http://www.fsf.org/.
 
-This software is dual-licensed, allowing you to choose between the GNU
-General Public License (GPL) and the www.jibble.org Commercial License.
-Since the GPL may be too restrictive for use in a proprietary application,
-a commercial license is also provided. Full license information can be
-found at http://www.jibble.org/licenses/
+Thanks to Paul James Mutton, the author of the original.
 
-$Author: pjm2 $
-$Id: ServerSideScriptEngine.java,v 1.4 2004/02/01 13:37:35 pjm2 Exp $
+The original copyright is as follows:
+
+  Copyright Paul James Mutton, 2001-2004, http://www.jibble.org/
+
+  This file is part of Mini Wegb Server / SimpleWebServer.
+
+  This software is dual-licensed, allowing you to choose between the GNU
+  General Public License (GPL) and the www.jibble.org Commercial License.
+  Since the GPL may be too restrictive for use in a proprietary application,
+  a commercial license is also provided. Full license information can be
+  found at http://www.jibble.org/licenses/
 
 */
 

@@ -36,7 +36,7 @@ import java.util.Map;
  */
 public class SimpleWebServer extends Thread {
 
-    public static final String VERSION = "SimpleWebServer  http://www.jibble.org/";
+    public static final String VERSION = "SimpleWebServer-mod";
     public static final Map<String, String> MIME_TYPES = new HashMap<String, String>();
 
     static {

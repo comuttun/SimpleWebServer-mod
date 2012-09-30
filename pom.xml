@@ -15,6 +15,18 @@
           <target>1.6</target>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <finalName>${project.name}-${project.version}</finalName>
+          <archive>
+            <manifest>
+              <mainClass>com.comutt.simplewebserver.main.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>

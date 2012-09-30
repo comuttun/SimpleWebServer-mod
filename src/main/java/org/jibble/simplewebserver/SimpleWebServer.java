@@ -40,15 +40,18 @@ public class SimpleWebServer extends Thread {
     public static final Map<String, String> MIME_TYPES = new HashMap<String, String>();
 
     static {
-        String image = "image/";
+        final String image = "image/";
         MIME_TYPES.put(".gif", image + "gif");
         MIME_TYPES.put(".jpg", image + "jpeg");
         MIME_TYPES.put(".jpeg", image + "jpeg");
         MIME_TYPES.put(".png", image + "png");
-        String text = "text/";
+        final String text = "text/";
         MIME_TYPES.put(".html", text + "html");
         MIME_TYPES.put(".htm", text + "html");
         MIME_TYPES.put(".txt", text + "plain");
+        MIME_TYPES.put(".css", text + "css");
+        final String application = "application";
+        MIME_TYPES.put(".js", application + "javascript");
     }
 
     public SimpleWebServer(File rootDir, int port) throws IOException {
